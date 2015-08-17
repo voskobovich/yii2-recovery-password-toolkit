@@ -1,0 +1,39 @@
+{
+  "name": "voskobovich/yii2-recovery-password-toolkit",
+  "description": "Toolkit for creating user recovery password for Yii2",
+  "keywords": [
+    "recovery",
+    "reset",
+    "password",
+    "user",
+    "toolkit",
+    "yii2"
+  ],
+  "homepage": "https://github.com/voskobovich/yii2-recovery-password-toolkit",
+  "type": "yii2-toolkit",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/voskobovich/yii2-recovery-password-toolkit/issues",
+    "source": "https://github.com/voskobovich/yii2-recovery-password-toolkit"
+  },
+  "authors": [
+    {
+      "name": "Vitaly Voskobovich",
+      "email": "vitaly@voskobovich.com",
+      "homepage": "http://voskobovich.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.4.0",
+    "yiisoft/yii2": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "voskobovich\\recovery\\controllers\\": "controllers",
+      "voskobovich\\recovery\\actions\\": "actions",
+      "voskobovich\\recovery\\forms\\": "forms",
+      "voskobovich\\recovery\\interfaces\\": "interfaces"
+    }
+  }
+}
