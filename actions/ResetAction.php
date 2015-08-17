@@ -48,12 +48,12 @@ class ResetAction extends Action
         $model = $model::findOne($id);
 
         if (!$model || !$model->validateConfirmHash($code)) {
-            Yii::$app->session->setFlash('recoveryChangeError');
+            Yii::$app->session->setFlash('recoveryResetError');
         } else {
             $post = Yii::$app->request->post();
 
             if ($model->load($post) && $model->save()) {
-                Yii::$app->session->setFlash('recoveryChangeSuccess');
+                Yii::$app->session->setFlash('recoveryResetSuccess');
             }
         }
 
