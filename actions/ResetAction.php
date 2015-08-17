@@ -2,17 +2,17 @@
 
 namespace voskobovich\recovery\actions;
 
-use voskobovich\recovery\interfaces\ChangeFormInterface;
+use voskobovich\recovery\interfaces\ResetFormInterface;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
 use yii\db\ActiveRecord;
 
 /**
- * Class ChangeAction
+ * Class ResetAction
  * @package voskobovich\recovery\actions
  */
-class ChangeAction extends Action
+class ResetAction extends Action
 {
     /**
      * @var string
@@ -22,7 +22,7 @@ class ChangeAction extends Action
     /**
      * @var string
      */
-    public $viewName = 'change';
+    public $viewName = 'reset';
 
     /**
      * @inheritdoc
@@ -43,7 +43,7 @@ class ChangeAction extends Action
      */
     public function run($id, $code)
     {
-        /** @var ActiveRecord|ChangeFormInterface $model */
+        /** @var ActiveRecord|ResetFormInterface $model */
         $model = new $this->modelClass;
         $model = $model::findOne($id);
 
