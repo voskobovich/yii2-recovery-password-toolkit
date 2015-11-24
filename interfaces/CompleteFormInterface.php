@@ -3,10 +3,10 @@
 namespace voskobovich\recovery\interfaces;
 
 /**
- * Interface ResetFormInterface
+ * Interface CompleteFormInterface
  * @package voskobovich\recovery\interfaces
  */
-interface ResetFormInterface
+interface CompleteFormInterface
 {
     /**
      * @param $code

@@ -2,17 +2,17 @@
 
 namespace voskobovich\recovery\actions;
 
-use voskobovich\recovery\interfaces\ResetFormInterface;
+use voskobovich\recovery\interfaces\CompleteFormInterface;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
 use yii\db\ActiveRecord;
 
 /**
- * Class ResetAction
+ * Class CompleteAction
  * @package voskobovich\recovery\actions
  */
-class ResetAction extends Action
+class CompleteAction extends Action
 {
     /**
      * @var string
@@ -22,7 +22,7 @@ class ResetAction extends Action
     /**
      * @var string
      */
-    public $viewName = 'reset';
+    public $viewName = 'complete';
 
     /**
      * @inheritdoc
@@ -43,17 +43,17 @@ class ResetAction extends Action
      */
     public function run($id, $code)
     {
-        /** @var ActiveRecord|ResetFormInterface $model */
+        /** @var ActiveRecord|CompleteFormInterface $model */
         $model = new $this->modelClass;
         $model = $model::findOne($id);
 
         if (!$model || !$model->validateConfirmHash($code)) {
-            Yii::$app->session->setFlash('recoveryResetError');
+            Yii::$app->session->setFlash('recoveryCompleteError');
         } else {
             $post = Yii::$app->request->post();
 
             if ($model->load($post) && $model->save()) {
-                Yii::$app->session->setFlash('recoveryResetSuccess');
+                Yii::$app->session->setFlash('recoveryCompleteSuccess');
             }
         }
 

@@ -22,7 +22,7 @@ class Controller extends \yii\web\Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index', 'reset'],
+                        'actions' => ['index', 'complete'],
                         'roles' => ['?']
                     ],
                 ]

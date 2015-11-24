@@ -2,7 +2,7 @@
 
 namespace voskobovich\recovery\actions;
 
-use voskobovich\recovery\forms\RecoveryIndexForm;
+use voskobovich\recovery\forms\IndexForm;
 use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
@@ -40,7 +40,7 @@ class IndexAction extends Action
      */
     public function run()
     {
-        /** @var RecoveryIndexForm $model */
+        /** @var IndexForm $model */
         $model = new $this->modelClass;
 
         $post = Yii::$app->request->post();

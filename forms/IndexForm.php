@@ -8,10 +8,10 @@ use Yii;
 
 
 /**
- * Class RecoveryIndexForm
+ * Class IndexForm
  * @package voskobovich\recovery\forms
  */
-abstract class RecoveryIndexForm extends Model
+abstract class IndexForm extends Model
 {
     /**
      * @var string
