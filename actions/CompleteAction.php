@@ -22,7 +22,17 @@ class CompleteAction extends Action
     /**
      * @var string
      */
-    public $viewName = 'complete';
+    public $viewFile = 'complete';
+
+    /**
+     * @var callable|null;
+     */
+    public $successCallback;
+
+    /**
+     * @var callable|null;
+     */
+    public $errorCallback;
 
     /**
      * @inheritdoc
@@ -49,15 +59,26 @@ class CompleteAction extends Action
 
         if (!$model || !$model->validateConfirmHash($code)) {
             Yii::$app->session->setFlash('recoveryCompleteError');
+
+            if ($this->errorCallback) {
+                call_user_func($this->errorCallback, $model);
+            } else {
+                Yii::$app->session->setFlash('complete:error');
+            }
+
         } else {
             $post = Yii::$app->request->post();
 
             if ($model->load($post) && $model->save()) {
-                Yii::$app->session->setFlash('recoveryCompleteSuccess');
+                if ($this->successCallback) {
+                    call_user_func($this->successCallback, $model);
+                } else {
+                    Yii::$app->session->setFlash('complete:success');
+                }
             }
         }
 
-        return $this->controller->render($this->viewName, [
+        return $this->controller->render($this->viewFile, [
             'model' => $model
         ]);
     }

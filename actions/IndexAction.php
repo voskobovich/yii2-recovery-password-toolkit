@@ -21,7 +21,17 @@ class IndexAction extends Action
     /**
      * @var string
      */
-    public $viewName = 'index';
+    public $viewFile = 'index';
+
+    /**
+     * @var callable|null;
+     */
+    public $successCallback;
+
+    /**
+     * @var callable|null;
+     */
+    public $errorCallback;
 
     /**
      * @inheritdoc
@@ -46,11 +56,15 @@ class IndexAction extends Action
         $post = Yii::$app->request->post();
         if ($model->load($post)) {
             if ($model->validate() && $model->sendMessage()) {
-                Yii::$app->session->setFlash('recoveryIndexSuccess');
+                if ($this->successCallback) {
+                    call_user_func($this->successCallback, $model);
+                } else {
+                    Yii::$app->session->setFlash('index:success');
+                }
             }
         }
 
-        return $this->controller->render($this->viewName, [
+        return $this->controller->render($this->viewFile, [
             'model' => $model
         ]);
     }
